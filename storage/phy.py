@@ -1,6 +1,7 @@
 # coding = utf-8
-from libs.common import Common, try_catch
-import os, json
+from libs.common import try_catch
+import os
+import json
 
 
 class Phy:
@@ -46,8 +47,43 @@ class Phy:
 			self.phy_info_dict[self.phy_list[phy_name_i]] = tmp_dict
 
 	@try_catch
+	def print_loss_of_dword_sync_count(self):
+		dict_loss_of_dword_sync_count = {}
+		for key in self.phy_info_dict:
+			dict_loss_of_dword_sync_count[key] = self.phy_info_dict[key]["loss_of_dword_sync_count"]
+			print("%s:\n%s" % (key, self.phy_info_dict[key]["loss_of_dword_sync_count"]))
+		return dict_loss_of_dword_sync_count
+
+	@try_catch
+	def print_invalid_dword_count(self):
+		dict_invalid_dword_count = {}
+		for key in self.phy_info_dict:
+			dict_invalid_dword_count[key] = self.phy_info_dict[key]["invalid_dword_count"]
+			print("%s:\n%s" % (key, self.phy_info_dict[key]["invalid_dword_count"]))
+		return dict_invalid_dword_count
+
+	@try_catch
+	def print_running_disparity_error_count(self):
+		dict_running_disparity_error_count = {}
+		for key in self.phy_info_dict:
+			dict_running_disparity_error_count[key] = self.phy_info_dict[key]["running_disparity_error_count"]
+			print("%s:\n%s" % (key, self.phy_info_dict[key]["running_disparity_error_count"]))
+		return dict_running_disparity_error_count
+
+	@try_catch
+	def print_all_errors(self):
+		for key in self.phy_info_dict:
+			if self.phy_info_dict[key]['loss_of_dword_sync_count'] != "0" or self.phy_info_dict[key][
+				'invalid_dword_count'] != "0" or self.phy_info_dict[key]['running_disparity_error_count'] != "0":
+				assert isinstance(key, str)
+				print(
+					u"{0:s}:\nloss_of_dword_sync_count:{1:s}\ninvalid_dword_count:{2:s}\nrunning_disparity_error_count:{3:s}\n".format(
+						key, self.phy_info_dict[key]['loss_of_dword_sync_count'],
+						self.phy_info_dict[key]['invalid_dword_count'],
+						self.phy_info_dict[key]['running_disparity_error_count']))
+
+	@try_catch
 	def dict_to_json(self):
-		self.collect_phy_info()
 		json_str = json.dumps(self.phy_info_dict, indent=1)
 		assert isinstance(json_str, str)
 		return json_str

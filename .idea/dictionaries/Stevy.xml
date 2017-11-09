@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Stevy">
     <words>
+      <w>centos</w>
       <w>devicename</w>
       <w>dictb</w>
       <w>filepath</w>
@@ -9,6 +10,7 @@
       <w>nvme</w>
       <w>sata</w>
       <w>smartctl</w>
+      <w>smartmontools</w>
     </words>
   </dictionary>
 </component>
