@@ -1,0 +1,13 @@
+环境需求：
+centos7
+python
+
+需要安装的工具链：
+lsscsi
+smartmontools
+sas3ircu赋予执行权限，拷贝到/bin目录下
+gcc工具链
+编译安装zfs环境（spl-0.7.3, zfs-0.7.3）
+
+
+
